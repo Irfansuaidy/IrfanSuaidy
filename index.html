@@ -195,15 +195,6 @@
                 <div class="glass rounded-xl p-8">
                     <h3 class="text-2xl font-semibold mb-6 text-blue-400">Frontend</h3>
                     <div class="space-y-4">
-                        <div class="skill-item" data-skill="React" data-level="90">
-                            <div class="flex justify-between mb-2">
-                                <span>React</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="bg-gray-700 rounded-full h-2">
-                                <div class="bg-blue-600 h-2 rounded-full skill-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
                         <div class="skill-item" data-skill="JavaScript" data-level="85">
                             <div class="flex justify-between mb-2">
                                 <span>JavaScript</span>
@@ -222,9 +213,9 @@
                                 <div class="bg-orange-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
                             </div>
                         </div>
-                        <div class="skill-item" data-skill="Vue.js" data-level="75">
+                        <div class="skill-item" data-skill="Ts" data-level="75">
                             <div class="flex justify-between mb-2">
-                                <span>Vue.js</span>
+                                <span>TypeScript</span>
                                 <span>75%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
@@ -237,9 +228,9 @@
                 <div class="glass rounded-xl p-8">
                     <h3 class="text-2xl font-semibold mb-6 text-purple-400">Backend</h3>
                     <div class="space-y-4">
-                        <div class="skill-item" data-skill="Node.js" data-level="88">
+                        <div class="skill-item" data-skill="PHP" data-level="88">
                             <div class="flex justify-between mb-2">
-                                <span>Node.js</span>
+                                <span>PHP - Laravel</span>
                                 <span>88%</span>
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
@@ -253,24 +244,6 @@
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
                                 <div class="bg-blue-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="MongoDB" data-level="82">
-                            <div class="flex justify-between mb-2">
-                                <span>MongoDB</span>
-                                <span>82%</span>
-                            </div>
-                            <div class="bg-gray-700 rounded-full h-2">
-                                <div class="bg-green-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="Express.js" data-level="85">
-                            <div class="flex justify-between mb-2">
-                                <span>Express.js</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="bg-gray-700 rounded-full h-2">
-                                <div class="bg-gray-500 h-2 rounded-full skill-bar" style="width: 0%"></div>
                             </div>
                         </div>
                     </div>
@@ -295,15 +268,6 @@
                             </div>
                             <div class="bg-gray-700 rounded-full h-2">
                                 <div class="bg-blue-400 h-2 rounded-full skill-bar" style="width: 0%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item" data-skill="AWS" data-level="65">
-                            <div class="flex justify-between mb-2">
-                                <span>AWS</span>
-                                <span>65%</span>
-                            </div>
-                            <div class="bg-gray-700 rounded-full h-2">
-                                <div class="bg-orange-400 h-2 rounded-full skill-bar" style="width: 0%"></div>
                             </div>
                         </div>
                         <div class="skill-item" data-skill="Figma" data-level="75">
@@ -555,13 +519,6 @@
 
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-        });
-
-        // Skill bars animation
-        document.querySelectorAll('.skill-item').forEach(item => {
-            const level = item.getAttribute('data-level');
-            const skillBar = item.querySelector('.skill-bar');
-            skillBar.style.width = level + '%';
         });
 
         // Scroll to section function
