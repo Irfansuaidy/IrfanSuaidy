@@ -50,11 +50,41 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        
+
         .hero-bg {
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            background-image: url('img/4090695.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
         }
-        
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay warna hitam transparan */
+            z-index: -1;
+            backdrop-filter: brightness(70%) grayscale(20%);
+        }
+
+        .sec-bg {
+            background-image: url('img/3998732.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .sec-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(22, 21, 21, 0.6); /* Overlay warna hitam transparan */
+            z-index: -1;
+            backdrop-filter: brightness(70%) grayscale(20%);
+        }
+
         .phone-screen-bg {
             background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
         }
@@ -114,7 +144,7 @@
                 <h2 class="text-2xl text-primary mb-4">Hey, I'm Ahmad Irfan Su'aidy</h2>
                 <h1 class="text-6xl md:text-7xl mb-4 gradient-text font-bold">Student of MAN Insan Cendekia Serpong</h1>
                 <p class="text-lg text-text-gray mb-8 leading-relaxed">Full-Stack Developer with expertise in modern web technologies. I create beautiful, functional, and user-friendly websites and applications that make a difference.</p>
-                <a href="#contact" class="inline-block px-8 py-3 bg-primary text-dark no-underline rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]">Let's Talk 💬</a>
+                <a href="#contact" class="inline-block px-8 py-3 bg-primary text-dark no-underline rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]">Let's Talk <i class="fa-solid fa-comments"></i></a>
             </div>
             <div class="flex justify-center items-center">
                 <div class="w-[300px] h-[600px] md:w-[300px] md:h-[600px] bg-gray-custom rounded-[30px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] relative">
@@ -123,10 +153,10 @@
                         <h3 class="text-primary mb-2">Irfan</h3>
                         <p class="text-text-gray text-sm">Full-Stack Developer</p>
                         <ul>
-                            <li><a href="#" class="text-gray-500 text-sm"><i class="fa-brands fa-github"></i> GitHub</a></li>
-                            <li><a href="#" class="text-gray-500 text-sm"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
-                            <li><a href="#" class="text-gray-500 text-sm"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
-                            <li><a href="#" class="text-gray-500 text-sm"><i class="fa-solid fa-envelope"></i> Email</a></li>
+                            <li><a href="#" class="text-text-gray text-sm"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                            <li><a href="#" class="text-text-gray text-sm"><i class="fa-brands fa-linkedin"></i> LinkedIn</a></li>
+                            <li><a href="#" class="text-text-gray text-sm"><i class="fa-brands fa-twitter"></i> Twitter</a></li>
+                            <li><a href="#" class="text-text-gray text-sm"><i class="fa-solid fa-envelope"></i> Email</a></li>
                         </ul>
                         <button class="mt-4 px-4 py-2 bg-primary text-dark rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]"><i class="fa-solid fa-download"></i> Download CV</button>
                     </div>
@@ -136,7 +166,7 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 px-8 bg-dark-light">
+    <section id="about" class="py-20 px-8 bg-dark-light sec-bg">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="text-5xl mb-12 text-primary">About Me</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
@@ -157,7 +187,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-20 px-8 bg-dark">
+    <section id="skills" class="py-20 px-8 bg-dark hero-bg">
         <div class="max-w-6xl mx-auto text-center">
             <h2 class="text-5xl mb-12 text-primary">Skills</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
@@ -186,7 +216,7 @@
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="py-20 px-8 bg-dark-light">
+    <section id="blog" class="py-20 px-8 bg-dark-light sec-bg">
         <div class="max-w-6xl mx-auto">
             <div class="text-center mb-12">
                 <h2 class="text-5xl mb-6 text-primary">Blogs</h2>
@@ -222,7 +252,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-8 bg-dark text-center">
+    <section id="contact" class="py-20 px-8 bg-dark text-center hero-bg">
         <div class="max-w-3xl mx-auto">
             <h2 class="text-5xl mb-6 text-primary">Let's Work Together</h2>
             <p class="text-text-gray mb-8">Have a project in mind? Let's discuss how we can bring your ideas to life.</p>
