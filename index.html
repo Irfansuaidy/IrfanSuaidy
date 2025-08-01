@@ -4,490 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmad Irfan Su'aidy | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#00ffcc',
+                        'dark': '#1a1a1a',
+                        'dark-light': '#2d2d2d',
+                        'gray-custom': '#333333',
+                        'text-gray': '#cccccc',
+                    },
+                    fontFamily: {
+                        'sans': ['Arial', 'sans-serif'],
+                    },
+                    animation: {
+                        'fadeInUp': 'fadeInUp 0.8s ease-out',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            'from': {
+                                opacity: '0',
+                                transform: 'translateY(30px)',
+                            },
+                            'to': {
+                                opacity: '1',
+                                transform: 'translateY(0)',
+                            },
+                        },
+                    },
+                    backdropBlur: {
+                        '10': '10px',
+                    },
+                }
+            }
+        }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #ffffff;
-            background: #1a1a1a;
-            overflow-x: hidden;
-        }
-
-        /* Navigation */
-        .navbar {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(26, 26, 26, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            border-bottom: 1px solid #333;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            color: #00ffcc;
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #00ffcc;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            padding: 0 2rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        /* Custom styles for gradient text and scrollbar */
+        .gradient-text {
             background: linear-gradient(45deg, #00ffcc, #ffffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-
-        .hero-content h2 {
-            font-size: 1.5rem;
-            color: #00ffcc;
-            margin-bottom: 1rem;
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
         }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: #cccccc;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: #00ffcc;
-            color: #1a1a1a;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.3);
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .phone-mockup {
-            width: 300px;
-            height: 600px;
-            background: #333;
-            border-radius: 30px;
-            padding: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            position: relative;
-        }
-
-        .phone-screen {
-            width: 100%;
-            height: 100%;
+        
+        .phone-screen-bg {
             background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
-            border-radius: 20px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
         }
-
-        .profile-pic {
-            width: 80px;
-            height: 80px;
-            background: #00ffcc;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            color: #1a1a1a;
-            font-weight: bold;
-        }
-
-        /* About Section */
-        .about {
-            padding: 5rem 2rem;
-            background: #2d2d2d;
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
-            color: #00ffcc;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .about-card {
-            background: #1a1a1a;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: transform 0.3s;
-        }
-
-        .about-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .about-card h3 {
-            color: #00ffcc;
-            margin-bottom: 1rem;
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 5rem 2rem;
-            background: #1a1a1a;
-        }
-
-        .skills-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .skill-card {
-            background: #2d2d2d;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid #333;
-            transition: all 0.3s;
-        }
-
-        .skill-card:hover {
-            border-color: #00ffcc;
-            transform: translateY(-5px);
-        }
-
-        .skill-icon {
-            width: 60px;
-            height: 60px;
-            background: #00ffcc;
-            border-radius: 50%;
-            margin: 0 auto 1rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            color: #1a1a1a;
-        }
-
-        /* Blog Section */
-        .blog {
-            padding: 5rem 2rem;
-            background: #2d2d2d;
-        }
-
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .blog-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        .blog-card {
-            background: #1a1a1a;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #333;
-            transition: transform 0.3s;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-image {
-            width: 100%;
-            height: 200px;
+        
+        .blog-image-bg {
             background: linear-gradient(45deg, #00ffcc, #2d2d2d);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #1a1a1a;
         }
-
-        .blog-content {
-            padding: 1.5rem;
-        }
-
-        .blog-meta {
-            color: #00ffcc;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-card h3 {
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .blog-card p {
-            color: #cccccc;
-            line-height: 1.6;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 2rem;
-            background: #1a1a1a;
-            text-align: center;
-        }
-
-        .contact-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .contact-form {
-            display: grid;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .form-group {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1rem;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            padding: 1rem;
-            background: #2d2d2d;
-            border: 1px solid #333;
-            border-radius: 10px;
-            color: #ffffff;
-            font-size: 1rem;
-        }
-
-        .contact-form textarea {
-            grid-column: 1 / -1;
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact-form input:focus,
-        .contact-form textarea:focus {
-            outline: none;
-            border-color: #00ffcc;
-        }
-
-        /* Footer */
-        .footer {
-            background: #0d0d0d;
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid #333;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .social-links a {
-            width: 50px;
-            height: 50px;
-            background: #2d2d2d;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #ffffff;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-links a:hover {
-            background: #00ffcc;
-            color: #1a1a1a;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .phone-mockup {
-                width: 250px;
-                height: 500px;
-            }
-
-            .form-group {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .fade-in {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Scrollbar */
+        
+        /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
-
+        
         ::-webkit-scrollbar-track {
             background: #1a1a1a;
         }
-
+        
         ::-webkit-scrollbar-thumb {
             background: #00ffcc;
             border-radius: 4px;
         }
-
+        
         ::-webkit-scrollbar-thumb:hover {
             background: #00e6b8;
         }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
     </style>
 </head>
-<body>
+<body class="font-sans leading-relaxed text-white bg-dark overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo">Ahmad Irfan Su'aidy</div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <nav class="fixed top-0 w-full bg-dark/95 backdrop-blur-[10px] px-8 py-4 z-[1000] border-b border-gray-custom">
+        <div class="flex justify-between items-center max-w-6xl mx-auto">
+            <div class="text-primary text-2xl font-bold">Ahmad Irfan Su'aidy</div>
+            <ul class="hidden md:flex list-none gap-8">
+                <li><a href="#home" class="text-white no-underline transition-colors duration-300 hover:text-primary">Home</a></li>
+                <li><a href="#about" class="text-white no-underline transition-colors duration-300 hover:text-primary">About</a></li>
+                <li><a href="#skills" class="text-white no-underline transition-colors duration-300 hover:text-primary">Skills</a></li>
+                <li><a href="#blog" class="text-white no-underline transition-colors duration-300 hover:text-primary">Blog</a></li>
+                <li><a href="#contact" class="text-white no-underline transition-colors duration-300 hover:text-primary">Contact</a></li>
             </ul>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-container">
-            <div class="hero-content fade-in">
-                <h2>Hey, I'm Irfan</h2>
-                <h1>Developer</h1>
-                <p>Full-Stack Developer with expertise in modern web technologies. I create beautiful, functional, and user-friendly websites and applications that make a difference.</p>
-                <a href="#contact" class="cta-button">Let's Talk 💬</a>
+    <section id="home" class="h-screen flex items-center px-8 hero-bg relative overflow-hidden">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="fade-in text-center md:text-left">
+                <h2 class="text-2xl text-primary mb-4">Hey, I'm Irfan</h2>
+                <h1 class="text-6xl md:text-7xl mb-4 gradient-text font-bold">Developer</h1>
+                <p class="text-lg text-text-gray mb-8 leading-relaxed">Full-Stack Developer with expertise in modern web technologies. I create beautiful, functional, and user-friendly websites and applications that make a difference.</p>
+                <a href="#contact" class="inline-block px-8 py-3 bg-primary text-dark no-underline rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]">Let's Talk 💬</a>
             </div>
-            <div class="hero-image">
-                <div class="phone-mockup">
-                    <div class="phone-screen">
-                        <div class="profile-pic">S</div>
-                        <img src="" alt="">
-                        <h3 style="color: #00ffcc; margin-bottom: 0.5rem;">Irfan</h3>
-                        <p style="color: #cccccc; font-size: 0.9rem;">Full-Stack Developer</p>
+            <div class="flex justify-center items-center">
+                <div class="w-[300px] h-[600px] md:w-[300px] md:h-[600px] bg-gray-custom rounded-[30px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] relative">
+                    <div class="w-full h-full phone-screen-bg rounded-[20px] p-5 flex flex-col items-center justify-center">
+                        <div class="w-20 h-20 bg-primary rounded-full mb-4 flex items-center justify-center text-2xl text-dark font-bold">S</div>
+                        <h3 class="text-primary mb-2">Irfan</h3>
+                        <p class="text-text-gray text-sm">Full-Stack Developer</p>
                     </div>
                 </div>
             </div>
@@ -495,85 +128,85 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="about">
-        <div class="about-container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-card">
-                    <h3>Frontend Development</h3>
-                    <p>Creating beautiful and interactive user interfaces using modern frameworks like React, Vue.js, and Angular. Focused on user experience and responsive design.</p>
+    <section id="about" class="py-20 px-8 bg-dark-light">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-5xl mb-12 text-primary">About Me</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-12">
+                <div class="bg-dark p-8 rounded-2xl border border-gray-custom transition-transform duration-300 hover:-translate-y-2">
+                    <h3 class="text-primary mb-4 text-xl">Frontend Development</h3>
+                    <p class="text-text-gray">Creating beautiful and interactive user interfaces using modern frameworks like React, Vue.js, and Angular. Focused on user experience and responsive design.</p>
                 </div>
-                <div class="about-card">
-                    <h3>Backend Development</h3>
-                    <p>Building robust server-side applications with Node.js, Python, and Java. Experienced in database design, API development, and cloud deployment.</p>
+                <div class="bg-dark p-8 rounded-2xl border border-gray-custom transition-transform duration-300 hover:-translate-y-2">
+                    <h3 class="text-primary mb-4 text-xl">Backend Development</h3>
+                    <p class="text-text-gray">Building robust server-side applications with Node.js, Python, and Java. Experienced in database design, API development, and cloud deployment.</p>
                 </div>
-                <div class="about-card">
-                    <h3>Full-Stack Solutions</h3>
-                    <p>Combining frontend and backend expertise to deliver complete web applications. From concept to deployment, I handle every aspect of the development process.</p>
+                <div class="bg-dark p-8 rounded-2xl border border-gray-custom transition-transform duration-300 hover:-translate-y-2">
+                    <h3 class="text-primary mb-4 text-xl">Full-Stack Solutions</h3>
+                    <p class="text-text-gray">Combining frontend and backend expertise to deliver complete web applications. From concept to deployment, I handle every aspect of the development process.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <div class="skills-container">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">🌐</div>
-                    <h3>HTML</h3>
-                    <p>Semantic markup and modern HTML5 features</p>
+    <section id="skills" class="py-20 px-8 bg-dark">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-5xl mb-12 text-primary">Skills</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
+                    <div class="w-15 h-15 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-dark">🌐</div>
+                    <h3 class="text-white mb-2">HTML</h3>
+                    <p class="text-text-gray text-sm">Semantic markup and modern HTML5 features</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">🎨</div>
-                    <h3>CSS</h3>
-                    <p>Advanced styling with CSS3, Flexbox, and Grid</p>
+                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
+                    <div class="w-15 h-15 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-dark">🎨</div>
+                    <h3 class="text-white mb-2">CSS</h3>
+                    <p class="text-text-gray text-sm">Advanced styling with CSS3, Flexbox, and Grid</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">⚡</div>
-                    <h3>JavaScript</h3>
-                    <p>ES6+, DOM manipulation, and async programming</p>
+                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
+                    <div class="w-15 h-15 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-dark">⚡</div>
+                    <h3 class="text-white mb-2">JavaScript</h3>
+                    <p class="text-text-gray text-sm">ES6+, DOM manipulation, and async programming</p>
                 </div>
-                <div class="skill-card">
-                    <div class="skill-icon">⚛️</div>
-                    <h3>React</h3>
-                    <p>Component-based architecture and state management</p>
+                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
+                    <div class="w-15 h-15 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-2xl text-dark">⚛️</div>
+                    <h3 class="text-white mb-2">React</h3>
+                    <p class="text-text-gray text-sm">Component-based architecture and state management</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="blog-container">
-            <div class="blog-header">
-                <h2 class="section-title">Blogs</h2>
-                <p style="color: #cccccc;">My thoughts on technology and business, welcome to subscribe our newsletter.</p>
+    <section id="blog" class="py-20 px-8 bg-dark-light">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl mb-6 text-primary">Blogs</h2>
+                <p class="text-text-gray">My thoughts on technology and business, welcome to subscribe our newsletter.</p>
             </div>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-image">💻</div>
-                    <div class="blog-content">
-                        <div class="blog-meta">Web Development</div>
-                        <h3>What does it take to become a web developer?</h3>
-                        <p>Web development, also known as website development, encompasses a variety of tasks and processes involved in creating websites for the internet...</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-dark rounded-2xl overflow-hidden border border-gray-custom transition-transform duration-300 hover:-translate-y-2">
+                    <div class="w-full h-48 blog-image-bg flex items-center justify-center text-5xl text-dark">💻</div>
+                    <div class="p-6">
+                        <div class="text-primary text-sm mb-2">Web Development</div>
+                        <h3 class="mb-4 text-white text-lg">What does it take to become a web developer?</h3>
+                        <p class="text-text-gray leading-relaxed">Web development, also known as website development, encompasses a variety of tasks and processes involved in creating websites for the internet...</p>
                     </div>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-image">🚀</div>
-                    <div class="blog-content">
-                        <div class="blog-meta">Web Development</div>
-                        <h3>Modern JavaScript Frameworks</h3>
-                        <p>Exploring the latest trends in JavaScript frameworks and how they're shaping the future of web development...</p>
+                <div class="bg-dark rounded-2xl overflow-hidden border border-gray-custom transition-transform duration-300 hover:-translate-y-2">
+                    <div class="w-full h-48 blog-image-bg flex items-center justify-center text-5xl text-dark">🚀</div>
+                    <div class="p-6">
+                        <div class="text-primary text-sm mb-2">Web Development</div>
+                        <h3 class="mb-4 text-white text-lg">Modern JavaScript Frameworks</h3>
+                        <p class="text-text-gray leading-relaxed">Exploring the latest trends in JavaScript frameworks and how they're shaping the future of web development...</p>
                     </div>
                 </div>
-                <div class="blog-card">
-                    <div class="blog-image">📱</div>
-                    <div class="blog-content">
-                        <div class="blog-meta">Web Development</div>
-                        <h3>Responsive Design Best Practices</h3>
-                        <p>Learn how to create websites that look great on all devices with modern responsive design techniques...</p>
+                <div class="bg-dark rounded-2xl overflow-hidden border border-gray-custom transition-transform duration-300 hover:-translate-y-2">
+                    <div class="w-full h-48 blog-image-bg flex items-center justify-center text-5xl text-dark">📱</div>
+                    <div class="p-6">
+                        <div class="text-primary text-sm mb-2">Web Development</div>
+                        <h3 class="mb-4 text-white text-lg">Responsive Design Best Practices</h3>
+                        <p class="text-text-gray leading-relaxed">Learn how to create websites that look great on all devices with modern responsive design techniques...</p>
                     </div>
                 </div>
             </div>
@@ -581,31 +214,31 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="contact-container">
-            <h2 class="section-title">Let's Work Together</h2>
-            <p style="color: #cccccc; margin-bottom: 2rem;">Have a project in mind? Let's discuss how we can bring your ideas to life.</p>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
-                    <input type="email" placeholder="Your Email" required>
+    <section id="contact" class="py-20 px-8 bg-dark text-center">
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-5xl mb-6 text-primary">Let's Work Together</h2>
+            <p class="text-text-gray mb-8">Have a project in mind? Let's discuss how we can bring your ideas to life.</p>
+            <form class="grid gap-6 mt-8 contact-form">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input type="text" placeholder="Your Name" required class="p-4 bg-dark-light border border-gray-custom rounded-xl text-white text-base focus:outline-none focus:border-primary">
+                    <input type="email" placeholder="Your Email" required class="p-4 bg-dark-light border border-gray-custom rounded-xl text-white text-base focus:outline-none focus:border-primary">
                 </div>
-                <input type="text" placeholder="Subject" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit" class="cta-button" style="justify-self: center;">Send Message</button>
+                <input type="text" placeholder="Subject" required class="p-4 bg-dark-light border border-gray-custom rounded-xl text-white text-base focus:outline-none focus:border-primary">
+                <textarea placeholder="Your Message" required class="p-4 bg-dark-light border border-gray-custom rounded-xl text-white text-base resize-y min-h-[120px] focus:outline-none focus:border-primary"></textarea>
+                <button type="submit" class="justify-self-center px-8 py-3 bg-primary text-dark no-underline rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]">Send Message</button>
             </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="social-links">
-            <a href="#" title="GitHub">🐙</a>
-            <a href="#" title="LinkedIn">💼</a>
-            <a href="#" title="Twitter">🐦</a>
-            <a href="#" title="Email">📧</a>
+    <footer class="bg-[#0d0d0d] py-8 text-center border-t border-gray-custom">
+        <div class="flex justify-center gap-4 mb-4">
+            <a href="#" title="GitHub" class="w-12 h-12 bg-dark-light rounded-full flex items-center justify-center text-white no-underline transition-all duration-300 hover:bg-primary hover:text-dark">🐙</a>
+            <a href="#" title="LinkedIn" class="w-12 h-12 bg-dark-light rounded-full flex items-center justify-center text-white no-underline transition-all duration-300 hover:bg-primary hover:text-dark">💼</a>
+            <a href="#" title="Twitter" class="w-12 h-12 bg-dark-light rounded-full flex items-center justify-center text-white no-underline transition-all duration-300 hover:bg-primary hover:text-dark">🐦</a>
+            <a href="#" title="Email" class="w-12 h-12 bg-dark-light rounded-full flex items-center justify-center text-white no-underline transition-all duration-300 hover:bg-primary hover:text-dark">📧</a>
         </div>
-        <p style="color: #666;">&copy; 2023 Ahmad Irfan Su'aidy. All rights reserved.</p>
+        <p class="text-gray-600">&copy; 2023 Ahmad Irfan Su'aidy. All rights reserved.</p>
     </footer>
 
     <script>
