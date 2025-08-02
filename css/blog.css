@@ -7,16 +7,37 @@
         }
 
         .hero-bg {
-            background: 
-                radial-gradient(circle at 20% 80%, rgba(0, 255, 204, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 255, 204, 0.05) 0%, transparent 50%),
-                #1a1a1a;
+            background-image: url('../img/4090695.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay warna hitam transparan */
+            z-index: -1;
+            backdrop-filter: brightness(70%) grayscale(20%);
         }
 
         .sec-bg {
-            background: 
-                linear-gradient(135deg, rgba(0, 255, 204, 0.02) 0%, transparent 50%),
-                #2d2d2d;
+            background-image: url('../img/3998732.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .sec-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(22, 21, 21, 0.6); /* Overlay warna hitam transparan */
+            z-index: -1;
+            backdrop-filter: brightness(70%) grayscale(20%);
         }
 
         .loading-skeleton {

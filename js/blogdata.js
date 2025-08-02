@@ -185,6 +185,7 @@ const blogData = {
 };
 
 let currentBlog = null;
+let currentView = 'list'; // 'list' or 'post'
 
 // Get URL parameters
 function getUrlParameter(name) {
@@ -196,6 +197,161 @@ function getUrlParameter(name) {
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
+}
+
+// Show blog list view
+function showBlogList() {
+    const blogListView = document.getElementById('blog-list-view');
+    const blogPostView = document.getElementById('blog-post-view');
+    
+    if (blogListView && blogPostView) {
+        blogListView.classList.remove('hidden');
+        blogPostView.classList.add('hidden');
+        currentView = 'list';
+        
+        // Update URL without page reload
+        const url = new URL(window.location);
+        url.searchParams.delete('post');
+        window.history.pushState({}, '', url);
+        
+        // Update page title
+        document.title = 'Blog | Ahmad Irfan Su\'aidy';
+        
+        // Load blog posts if not already loaded
+        loadBlogPosts();
+    }
+}
+
+// Show blog post view
+function showBlogPost(postKey) {
+    const blogListView = document.getElementById('blog-list-view');
+    const blogPostView = document.getElementById('blog-post-view');
+    
+    if (!blogData[postKey]) {
+        console.error('Blog post not found:', postKey);
+        return;
+    }
+    
+    if (blogListView && blogPostView) {
+        blogListView.classList.add('hidden');
+        blogPostView.classList.remove('hidden');
+        currentView = 'post';
+        
+        // Update URL without page reload
+        const url = new URL(window.location);
+        url.searchParams.set('post', postKey);
+        window.history.pushState({}, '', url);
+        
+        // Load the blog post
+        loadBlogPost(postKey);
+    }
+}
+
+// Load blog posts for the list view
+function loadBlogPosts() {
+    const blogPostsGrid = document.getElementById('blog-posts-grid');
+    if (!blogPostsGrid) return;
+    
+    let postsHTML = '';
+    
+    Object.entries(blogData).forEach(([key, post]) => {
+        postsHTML += `
+            <article class="blog-card bg-dark rounded-2xl overflow-hidden border border-gray-custom transition-all duration-500 hover:-translate-y-2 glow-effect opacity-0 transform translate-y-4">
+                <div class="relative overflow-hidden">
+                    <div class="w-full h-48 blog-image-bg flex items-center justify-center text-6xl text-dark transition-transform duration-300 hover:scale-110">
+                        ${post.emoji}
+                    </div>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-primary text-sm font-semibold uppercase tracking-widest">
+                            ${post.category.replace('-', ' ')}
+                        </span>
+                        <div class="flex items-center text-text-gray text-xs space-x-2">
+                            <span><i class="fas fa-calendar-alt mr-1 text-primary"></i> ${formatDate(post.date)}</span>
+                            <span>•</span>
+                            <span><i class="fas fa-clock mr-1 text-primary"></i> ${post.readTime}</span>
+                        </div>
+                    </div>
+                    <h2 class="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">
+                        <button onclick="showBlogPost('${key}')" class="text-left no-underline hover:no-underline w-full">
+                            ${post.title}
+                        </button>
+                    </h2>
+                    <p class="text-text-gray leading-relaxed text-sm line-clamp-3">
+                        ${post.excerpt}
+                    </p>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-custom/50">
+                        <button onclick="showBlogPost('${key}')" class="text-primary font-medium hover:text-primary/80 transition-colors duration-300 flex items-center space-x-1">
+                            <span>Read More</span>
+                            <span class="transform transition-transform duration-300 hover:translate-x-1">→</span>
+                        </button>
+                    </div>
+                </div>
+            </article>
+        `;
+    });
+    
+    blogPostsGrid.innerHTML = postsHTML;
+    
+    // Initialize fade-in animations
+    initFadeInAnimations();
+}
+
+// Load individual blog post
+function loadBlogPost(postKey) {
+    const post = blogData[postKey];
+    if (!post) return;
+    
+    currentBlog = post;
+    
+    // Update page title
+    document.title = `${post.title} | Ahmad Irfan Su'aidy`;
+    
+    // Update breadcrumb
+    const breadcrumbTitle = document.getElementById('breadcrumb-title');
+    if (breadcrumbTitle) breadcrumbTitle.textContent = post.title;
+    
+    // Update blog header
+    const categoryElement = document.getElementById('blog-category');
+    const mainTitleElement = document.getElementById('blog-main-title');
+    const dateElement = document.getElementById('blog-date');
+    const readTimeElement = document.getElementById('blog-read-time');
+    const viewsElement = document.getElementById('blog-views');
+    const emojiElement = document.getElementById('blog-emoji');
+    
+    if (categoryElement) categoryElement.textContent = post.category.replace('-', ' ').toUpperCase();
+    if (mainTitleElement) mainTitleElement.textContent = post.title;
+    if (dateElement) dateElement.textContent = formatDate(post.date);
+    if (readTimeElement) readTimeElement.textContent = post.readTime;
+    if (viewsElement) viewsElement.textContent = `${post.views.toLocaleString()} views`;
+    if (emojiElement) emojiElement.textContent = post.emoji;
+    
+    // Update blog content
+    const contentElement = document.getElementById('blog-content');
+    if (contentElement) {
+        contentElement.innerHTML = post.content;
+        // Generate table of contents after content is loaded
+        generateTableOfContents(post.content);
+    }
+    
+    // Update tags
+    const tagsElement = document.getElementById('blog-tags');
+    if (tagsElement) {
+        tagsElement.innerHTML = generateTags(post.tags);
+    }
+    
+    // Load related posts
+    loadRelatedPosts(postKey);
+    
+    // Initialize scroll-based features
+    initScrollFeatures();
+    
+    // Update view count (in a real app, this would be sent to a server)
+    post.views += 1;
+    
+    // Scroll to top
+    window.scrollTo(0, 0);
 }
 
 // Generate Table of Contents
@@ -254,6 +410,8 @@ function generateTableOfContents(content) {
 
 // Update reading progress
 function updateReadingProgress() {
+    if (currentView !== 'post') return;
+    
     const article = document.querySelector('article');
     if (!article) return;
 
@@ -300,10 +458,10 @@ function loadRelatedPosts(currentPostKey) {
                     <div class="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/5 rounded-full flex items-center justify-center mx-auto mb-3 text-3xl">
                         ${post.emoji}
                     </div>
-                    <span class="text-primary text-xs font-semibold uppercase tracking-widest">${post.category}</span>
+                    <span class="text-primary text-xs font-semibold uppercase tracking-widest">${post.category.replace('-', ' ')}</span>
                 </div>
                 <h3 class="text-xl font-bold mb-3 text-white group-hover:text-primary transition-colors">
-                    <a href="blog.html?post=${key}" class="no-underline">${post.title}</a>
+                    <button onclick="showBlogPost('${key}')" class="no-underline text-left w-full">${post.title}</button>
                 </h3>
                 <p class="text-text-gray text-sm mb-4 line-clamp-3">${post.excerpt}</p>
                 <div class="flex items-center justify-between text-xs text-text-gray">
@@ -332,151 +490,11 @@ function generateTags(tags) {
     `).join('');
 }
 
-function copyLink() {
-    const url = window.location.href;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(() => {
-            // Show a temporary success message
-            const button = event.target.closest('button');
-            const originalIcon = button.innerHTML;
-            button.innerHTML = '<i class="fas fa-check"></i>';
-            button.classList.add('bg-green-500');
-            
-            setTimeout(() => {
-                button.innerHTML = originalIcon;
-                button.classList.remove('bg-green-500');
-            }, 2000);
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-            fallbackCopyTextToClipboard(url);
-        });
-    } else {
-        fallbackCopyTextToClipboard(url);
-    }
-}
-
-function fallbackCopyTextToClipboard(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.top = '0';
-    textArea.style.left = '0';
-    textArea.style.position = 'fixed';
-    document.body.appendChild(textArea);
-    textArea.focus();
-    textArea.select();
-    
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            // Show success feedback
-            alert('Link copied to clipboard!');
-        }
-    } catch (err) {
-        console.error('Fallback: Oops, unable to copy', err);
-        alert('Failed to copy link. Please copy manually: ' + text);
-    }
-    
-    document.body.removeChild(textArea);
-}
-
-// Show error message
-function showError(message) {
-    const loadingState = document.getElementById('loading-state');
-    const errorMessage = document.getElementById('error-message');
-    
-    if (loadingState) loadingState.classList.add('hidden');
-    if (errorMessage) {
-        errorMessage.textContent = message;
-        errorMessage.classList.remove('hidden');
-    }
-    
-    // Create error display if elements don't exist
-    if (!errorMessage) {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'min-h-screen flex items-center justify-center bg-dark';
-        errorDiv.innerHTML = `
-            <div class="text-center">
-                <div class="text-6xl mb-4 text-primary">⚠️</div>
-                <h1 class="text-3xl font-bold text-white mb-4">Blog Post Not Found</h1>
-                <p class="text-text-gray mb-8">${message}</p>
-                <a href="index.html#blog" class="inline-block px-6 py-3 bg-primary text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors">
-                    Back to Blog
-                </a>
-            </div>
-        `;
-        document.body.innerHTML = '';
-        document.body.appendChild(errorDiv);
-    }
-}
-
-// Initialize blog page
-function initBlogPage() {
-    const postKey = getUrlParameter('post');
-    
-    if (!postKey || !blogData[postKey]) {
-        showError('The requested blog post could not be found.');
-        return;
-    }
-    
-    const post = blogData[postKey];
-    currentBlog = post;
-    
-    // Update page title
-    document.title = `${post.title} | Ahmad Irfan Su'aidy`;
-    
-    // Update meta elements
-    const blogTitle = document.getElementById('blog-title');
-    if (blogTitle) blogTitle.textContent = `${post.title} | Ahmad Irfan Su'aidy`;
-    
-    // Update breadcrumb
-    const breadcrumbTitle = document.getElementById('breadcrumb-title');
-    if (breadcrumbTitle) breadcrumbTitle.textContent = post.title;
-    
-    // Update blog header
-    const categoryElement = document.getElementById('blog-category');
-    const mainTitleElement = document.getElementById('blog-main-title');
-    const dateElement = document.getElementById('blog-date');
-    const readTimeElement = document.getElementById('blog-read-time');
-    const viewsElement = document.getElementById('blog-views');
-    const emojiElement = document.getElementById('blog-emoji');
-    
-    if (categoryElement) categoryElement.textContent = post.category.replace('-', ' ').toUpperCase();
-    if (mainTitleElement) mainTitleElement.textContent = post.title;
-    if (dateElement) dateElement.textContent = formatDate(post.date);
-    if (readTimeElement) readTimeElement.textContent = post.readTime;
-    if (viewsElement) viewsElement.textContent = `${post.views.toLocaleString()} views`;
-    if (emojiElement) emojiElement.textContent = post.emoji;
-    
-    // Update blog content
-    const contentElement = document.getElementById('blog-content');
-    if (contentElement) {
-        contentElement.innerHTML = post.content;
-        // Generate table of contents after content is loaded
-        generateTableOfContents(post.content);
-    }
-    
-    // Update tags
-    const tagsElement = document.getElementById('blog-tags');
-    if (tagsElement) {
-        tagsElement.innerHTML = generateTags(post.tags);
-    }
-    
-    // Load related posts
-    loadRelatedPosts(postKey);
-    
-    // Show blog container
-    const blogContainer = document.getElementById('blog-container');
-    if (blogContainer) blogContainer.classList.remove('hidden');
-    
-    // Initialize scroll-based features
-    initScrollFeatures();
-    
-    // Update view count (in a real app, this would be sent to a server)
-    post.views += 1;
-}
-
 // Initialize scroll-based features
 function initScrollFeatures() {
+    // Clean up existing event listeners to prevent memory leaks
+    window.removeEventListener('scroll', updateReadingProgress);
+    
     // Update reading progress on scroll
     window.addEventListener('scroll', updateReadingProgress);
     
@@ -511,71 +529,84 @@ function initScrollFeatures() {
     });
 }
 
-// Newsletter signup handler
-document.addEventListener('DOMContentLoaded', () => {
-    const newsletterForm = document.querySelector('form');
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = e.target.querySelector('input[type="email"]').value;
-            
-            if (email) {
-                // In a real app, this would send the email to a server
-                alert('Thank you for subscribing! You\'ll receive updates about new blog posts.');
-                e.target.reset();
+// Initialize fade-in animations
+function initFadeInAnimations() {
+    const observeElements = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+                observeElements.unobserve(entry.target);
             }
         });
-    }
-    
-    // Initialize the blog page
-    initBlogPage();
-});
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
 
-// Smooth scrolling for navigation links
-const navLinks = document.querySelectorAll('nav a');
-navLinks.forEach(link => {
-    if (link.getAttribute('href').startsWith('index.html#')) {
-        link.addEventListener('click', (e) => {
-            // Let the default behavior handle navigation to index.html
-        });
-    }
-});
+    // Observe elements with fade-in class and blog cards
+    document.querySelectorAll('.fade-in, .blog-card').forEach(el => {
+        if (!el.style.opacity) { // Only apply if not already set
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s ease-out, transform 0.8s ease-out';
+        }
+        observeElements.observe(el);
+    });
+}
 
 // Mobile menu toggle
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
-    if (mobileMenu) {
+    const mobileMenuPost = document.getElementById('mobile-menu-post');
+    
+    if (currentView === 'list' && mobileMenu) {
         mobileMenu.classList.toggle('hidden');
+    } else if (currentView === 'post' && mobileMenuPost) {
+        mobileMenuPost.classList.toggle('hidden');
     }
 }
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (event) => {
+    const postKey = getUrlParameter('post');
+    
+    if (postKey && blogData[postKey]) {
+        showBlogPost(postKey);
+    } else {
+        showBlogList();
+    }
+});
 
 // Handle window resize for responsive features
 window.addEventListener('resize', () => {
     // Close mobile menu on larger screens
     if (window.innerWidth >= 768) {
         const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuPost = document.getElementById('mobile-menu-post');
+        
         if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
             mobileMenu.classList.add('hidden');
+        }
+        if (mobileMenuPost && !mobileMenuPost.classList.contains('hidden')) {
+            mobileMenuPost.classList.add('hidden');
         }
     }
 });
 
-// Add fade-in animation to elements when they come into view
-const observeElements = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-fadeInUp');
-            observeElements.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-});
-
-// Observe elements with fade-in class
+// Initialize the page
 document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('.fade-in').forEach(el => {
-        observeElements.observe(el);
-    });
+    const postKey = getUrlParameter('post');
+    
+    // Check if we should show a specific post or the blog list
+    if (postKey && blogData[postKey]) {
+        showBlogPost(postKey);
+    } else {
+        showBlogList();
+    }
+    
+    // Initialize fade-in animations
+    setTimeout(() => {
+        initFadeInAnimations();
+    }, 100); // Small delay to ensure DOM is fully ready
 });
