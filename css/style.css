@@ -1,0 +1,133 @@
+/* Custom styles for gradient text and scrollbar */
+        .gradient-text {
+            background: linear-gradient(45deg, #00ffcc, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-bg {
+            background-image: url('../img/4090695.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6); /* Overlay warna hitam transparan */
+            z-index: -1;
+            backdrop-filter: brightness(70%) grayscale(20%);
+        }
+
+        .sec-bg {
+            background-image: url('../img/3998732.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .sec-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(22, 21, 21, 0.6); /* Overlay warna hitam transparan */
+            z-index: -1;
+            backdrop-filter: brightness(70%) grayscale(20%);
+        }
+
+        .phone-screen-bg {
+            background: linear-gradient(135deg, #2d2d2d, #1a1a1a);
+        }
+        
+        .blog-image-bg {
+            background: linear-gradient(45deg, #00ffcc, #2d2d2d);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #00ffcc;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00e6b8;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Fade in animation */
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+                /* Additional animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200px 0;
+            }
+            100% {
+                background-position: calc(200px + 100%) 0;
+            }
+        }
+
+        .shimmer {
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 255, 204, 0.2),
+                transparent
+            );
+            background-size: 200px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .glow-effect:hover {
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.2);
+        }
+
+        .loading-skeleton {
+            background: linear-gradient(90deg, #2d2d2d 25%, #3a3a3a 50%, #2d2d2d 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }

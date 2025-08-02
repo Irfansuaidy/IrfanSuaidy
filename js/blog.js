@@ -110,7 +110,7 @@ const blogPosts = [
                         </p>
                         <div class="flex items-center justify-between pt-4 border-t border-gray-custom/50">
                             <button class="text-primary font-medium hover:text-primary/80 transition-colors duration-300 flex items-center space-x-1">
-                                <span>Read More</span>
+                                <a href="blog.html" class=" no-underline transition-colors duration-300 hover:text-primary">Read More</a>
                                 <span class="transform transition-transform duration-300 hover:translate-x-1">→</span>
                             </button>
                             <div class="flex space-x-2">
