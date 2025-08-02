@@ -188,32 +188,14 @@
 
     <!-- Skills Section -->
     <section id="skills" class="py-20 px-8 bg-dark hero-bg">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-5xl mb-12 text-primary">Skills</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
-                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-dark"><i class="fa-brands fa-html5"></i></div>
-                    <h3 class="text-white mb-2">HTML</h3>
-                    <p class="text-text-gray text-sm">Semantic markup and modern HTML5 features</p>
-                </div>
-                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-dark"><i class="fa-brands fa-css3-alt"></i></div>
-                    <h3 class="text-white mb-2">CSS</h3>
-                    <p class="text-text-gray text-sm">Advanced styling with CSS3, Flexbox, and Grid</p>
-                </div>
-                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-dark"><i class="fa-brands fa-js"></i></div>
-                    <h3 class="text-white mb-2">JavaScript</h3>
-                    <p class="text-text-gray text-sm">ES6+, DOM manipulation, and async programming</p>
-                </div>
-                <div class="bg-dark-light p-8 rounded-2xl border border-gray-custom transition-all duration-300 hover:border-primary hover:-translate-y-2">
-                    <div class="w-16 h-16 bg-primary rounded-full mx-auto mb-4 flex items-center justify-center text-3xl text-dark"><i class="fa-brands fa-php"></i></div>
-                    <h3 class="text-white mb-2">PHP</h3>
-                    <p class="text-text-gray text-sm">Component-based architecture and state management</p>
-                </div>
-            </div>
+    <div class="max-w-6xl mx-auto text-center">
+        <h2 class="text-5xl mb-12 text-primary">Skills</h2>
+        <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
+        <!-- Skill cards will be inserted here by JS -->
         </div>
+    </div>
     </section>
+
 
     <!-- Blog Section -->
     <section id="blog" class="py-20 px-8 bg-dark-light sec-bg">
@@ -279,6 +261,7 @@
         <p class="text-gray-600">&copy; 2023 Ahmad Irfan Su'aidy. All rights reserved.</p>
     </footer>
 
+    <script src="js/skill.js"></script>
     <script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
