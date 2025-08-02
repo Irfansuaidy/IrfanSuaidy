@@ -3,6 +3,10 @@ const skills = [
     { icon: 'fa-css3-alt', title: 'CSS', desc: 'Advanced styling with CSS3, Flexbox, and Grid' },
     { icon: 'fa-js', title: 'JavaScript', desc: 'ES6+, DOM manipulation, and async programming' },
     { icon: 'fa-php', title: 'PHP', desc: 'Component-based architecture and state management' },
+    { icon: 'fa-laravel', title: 'Laravel', desc: 'MVC framework for building web applications' },
+    { icon: 'fa-docker', title: 'Docker', desc: 'Component-based architecture and state management' },
+    { icon: 'fa-figma', title: 'Figma', desc: 'MVC framework for building web applications' },
+    { icon: 'fa-wordpress', title: 'Wordpress', desc: 'MVC framework for building web applications' },
     // Tambah skill lain di sini jika perlu
   ];
 
