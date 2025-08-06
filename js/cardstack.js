@@ -158,7 +158,7 @@ class CardStackAnimator {
                 const nextIndex = (this.currentIndex + 1) % this.cards.length;
                 this.goToCard(nextIndex);
             }
-        }, 3000); // Auto rotate every 3 seconds
+        }, 2000); // Auto rotate every 2 seconds
     }
     
     resetAutoRotation() {
