@@ -1,7 +1,6 @@
-function typeWriter(el, texts, speed = 100, loop = false) {
+function typeWriter(el, texts, speed = 100, loop = false, pause = 1500) {
   let i = 0, j = 0, isDeleting = false;
 
-  // buat elemen teks & cursor
   const textSpan = document.createElement("span");
   const cursor = document.createElement("span");
   cursor.classList.add("typing-cursor");
@@ -17,8 +16,11 @@ function typeWriter(el, texts, speed = 100, loop = false) {
         i++;
         setTimeout(typing, speed);
       } else if (loop) {
-        isDeleting = true;
-        setTimeout(typing, speed * 2);
+        // berhenti dulu sebelum delete
+        setTimeout(() => {
+          isDeleting = true;
+          typing();
+        }, pause);
       }
     } else {
       if (i > 0) {
@@ -38,5 +40,11 @@ function typeWriter(el, texts, speed = 100, loop = false) {
 // Pemakaian
 typeWriter(document.getElementById("typing1"), ["Hey, I'm Ahmad Irfan Su'aidy"], 125, false);
 setTimeout(() => {
-  typeWriter(document.getElementById("typing2"), ["Debugging Life One Line at a Time"], 120, true);
-}, 3500);
+  typeWriter(
+    document.getElementById("typing2"),
+    ["Debugging Life One Line at a Time"],
+    120,
+    true,
+    1500 // jeda 2 detik sebelum mulai menghapus
+  );
+}, 4200);
