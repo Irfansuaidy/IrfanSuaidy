@@ -7,6 +7,10 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Asimovian&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -53,7 +57,7 @@
                 <li><a href="#home" class="text-white no-underline transition-colors duration-300 hover:text-primary">Home</a></li>
                 <li><a href="#about" class="text-white no-underline transition-colors duration-300 hover:text-primary">About</a></li>
                 <li><a href="#skills" class="text-white no-underline transition-colors duration-300 hover:text-primary">Skills</a></li>
-                <li><a href="#blog" class="text-white no-underline transition-colors duration-300 hover:text-primary">Blog</a></li>
+                <li><a href="#projects" class="text-white no-underline transition-colors duration-300 hover:text-primary">Projects</a></li>
                 <li><a href="#contact" class="text-white no-underline transition-colors duration-300 hover:text-primary">Contact</a></li>
             </ul>
         </div>
@@ -63,10 +67,11 @@
     <section id="home" class="h-screen flex items-center px-8 hero-bg relative overflow-hidden">
         <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="fade-in text-center md:text-left">
-                <h2 class="text-2xl text-primary mb-4">Hey, I'm Ahmad Irfan Su'aidy</h2>
-                <h1 class="text-6xl md:text-6xl mb-4 gradient-text font-bold">Debugging Life<br />One Line at a Time</h1>
+                <h2 id="typing1" class="text-xl text-primary mb-4 space-mono typing"></h2>
+                <h1 id="typing2" class="text-5xl md:text-6xl mb-4 gradient-text font-bold asimovian"></h1>
                 <p class="text-lg text-text-gray mb-8 leading-relaxed">I'm a high school student who enjoys combining logic and creativity. I'm passionate about math, and web development. For me, technology is a fun way to solve problems and create things that can inspire others.</p>
                 <a href="#contact" class="inline-block px-8 py-3 bg-primary text-dark no-underline rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]">Let's Talk <i class="fa-solid fa-comments"></i></a>
+                <a href="blog.html" class="inline-block px-8 py-3 bg-primary text-dark no-underline rounded-full font-bold transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,255,204,0.3)]">My Blog <i class="fa-solid fa-blog"></i></a>
             </div>
             <div class="flex justify-center items-center">
                 <div class="w-[300px] h-[600px] md:w-[300px] md:h-[600px] bg-gray-custom rounded-[30px] p-5 shadow-[0_20px_40px_rgba(0,0,0,0.5)] relative">
@@ -105,19 +110,15 @@
                     <h3 class="text-3xl font-bold text-white">Hi, I'm Ahmad Irfan Su'aidy</h3>
                     <div class="w-20 h-1 bg-gradient-to-r from-primary to-primary/50 rounded-full"></div>
                 </div>
-                
                 <p class="text-text-gray text-lg leading-relaxed">
                     I'm a passionate high school student at MAN Insan Cendekia Serpong who loves combining logic and creativity. My journey in technology started with curiosity about how things work, and it has evolved into a deep passion for creating digital solutions.
                 </p>
-                
                 <p class="text-text-gray text-lg leading-relaxed">
                     Mathematics has always been my foundation - it teaches me to think systematically and solve problems methodically. This analytical mindset perfectly complements my love for web development, where I can transform mathematical concepts into beautiful, functional user experiences.
                 </p>
-                
                 <p class="text-text-gray text-lg leading-relaxed">
                     For me, technology isn't just about coding - it's about creating meaningful solutions that can inspire and help others. Every project I work on is an opportunity to learn something new and make a positive impact.
                 </p>
-                
                 <div class="flex flex-wrap gap-4 mt-8">
                     <div class="flex items-center gap-2">
                         <div class="w-2 h-2 bg-primary rounded-full"></div>
@@ -185,114 +186,22 @@
     </div>
     </section>
 
-
-    <!-- Blog Section -->
-    <section id="blog" class="py-20 px-8 bg-dark-light sec-bg min-h-screen">
-        <div class="max-w-6xl mx-auto">
-            <!-- Header with enhanced styling -->
-            <div class="text-center mb-16 fade-in">
-                <div class="inline-block mb-4">
-                    <span class="text-primary text-sm font-semibold uppercase tracking-widest border border-primary/30 px-4 py-2 rounded-full bg-primary/5">
-                        Latest Insights
-                    </span>
-                </div>
-                <h2 class="text-6xl lg:text-7xl mb-6 text-white font-bold relative">
-                    <span class="gradient-text">Blogs</span>
-                    <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50 rounded-full"></div>
-                </h2>
-                <p class="text-text-gray text-lg max-w-2xl mx-auto leading-relaxed">
-                    Discover cutting-edge insights on technology, development, and digital innovation. 
-                    <span class="text-primary font-medium cursor-pointer hover:underline" id="subscribeBtn">
-                        Subscribe to our newsletter
-                    </span> 
-                    for exclusive content.
-                </p>
-            </div>
-
-            <!-- Filter Tags -->
-            <div class="flex flex-wrap justify-center gap-3 mb-12 fade-in">
-                <button class="filter-btn active px-6 py-2 rounded-full border border-primary bg-primary text-dark font-medium transition-all duration-300 hover:shadow-lg hover:shadow-primary/25" data-filter="all">
-                    All Posts
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-full border border-gray-custom bg-transparent text-text-gray font-medium transition-all duration-300 hover:border-primary hover:text-primary" data-filter="class-activity">
-                    Class Activity
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-full border border-gray-custom bg-transparent text-text-gray font-medium transition-all duration-300 hover:border-primary hover:text-primary" data-filter="design">
-                    Design
-                </button>
-                <button class="filter-btn px-6 py-2 rounded-full border border-gray-custom bg-transparent text-text-gray font-medium transition-all duration-300 hover:border-primary hover:text-primary" data-filter="technology">
-                    Technology
-                </button>
-            </div>
-
-            <!-- Loading State -->
-            <div id="loading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-8">
-                <div class="bg-dark rounded-2xl overflow-hidden border border-gray-custom">
-                    <div class="w-full h-48 loading-skeleton"></div>
-                    <div class="p-6 space-y-3">
-                        <div class="h-4 w-24 loading-skeleton rounded"></div>
-                        <div class="h-6 w-full loading-skeleton rounded"></div>
-                        <div class="h-4 w-full loading-skeleton rounded"></div>
-                        <div class="h-4 w-3/4 loading-skeleton rounded"></div>
-                    </div>
-                </div>
-                <div class="bg-dark rounded-2xl overflow-hidden border border-gray-custom">
-                    <div class="w-full h-48 loading-skeleton"></div>
-                    <div class="p-6 space-y-3">
-                        <div class="h-4 w-24 loading-skeleton rounded"></div>
-                        <div class="h-6 w-full loading-skeleton rounded"></div>
-                        <div class="h-4 w-full loading-skeleton rounded"></div>
-                        <div class="h-4 w-3/4 loading-skeleton rounded"></div>
-                    </div>
-                </div>
-                <div class="bg-dark rounded-2xl overflow-hidden border border-gray-custom">
-                    <div class="w-full h-48 loading-skeleton"></div>
-                    <div class="p-6 space-y-3">
-                        <div class="h-4 w-24 loading-skeleton rounded"></div>
-                        <div class="h-6 w-full loading-skeleton rounded"></div>
-                        <div class="h-4 w-full loading-skeleton rounded"></div>
-                        <div class="h-4 w-3/4 loading-skeleton rounded"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Blog Grid -->
-            <div id="blogGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-0 transition-opacity duration-500">
-                <!-- Blog posts will be inserted here by JavaScript -->
-            </div>
-
-            <!-- Load More Button -->
-            <div class="text-center mt-12">
-                <button id="loadMoreBtn" onclick="window.location.href='blog.html'" class="hidden px-8 py-4 bg-gradient-to-r from-primary to-primary/80 text-dark font-semibold rounded-full hover:from-primary/90 hover:to-primary/70 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-primary/25">
-                    Load More Articles
-                    <span class="ml-2">→</span>
-                </button>
-            </div>
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-8 bg-dark-light sec-bg min-h-screen">
+    <div class="max-w-6xl mx-auto text-center">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl lg:text-6xl mb-6 text-white font-bold relative">
+                <span class="gradient-text">Featured Projects</span>
+                <div class="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-primary/50 via-primary to-primary/50 rounded-full"></div>
+            </h2>
+            <p class="text-text-gray text-lg max-w-2xl mx-auto">
+                Here are some of my recent projects that showcase my skills and creativity.
+            </p>
         </div>
-
-        <!-- Newsletter Modal -->
-        <div id="newsletterModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300">
-            <div class="bg-dark border border-gray-custom rounded-2xl p-8 max-w-md w-full mx-4 transform scale-90 transition-transform duration-300">
-                <div class="text-center mb-6">
-                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-primary/60 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span class="text-2xl">📧</span>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-2">Stay Updated</h3>
-                    <p class="text-text-gray">Get the latest articles delivered to your inbox</p>
-                </div>
-                <form class="space-y-4">
-                    <input type="email" placeholder="Enter your email" class="w-full px-4 py-3 bg-dark-light border border-gray-custom rounded-lg text-white placeholder-text-gray focus:border-primary focus:outline-none transition-colors">
-                    <div class="flex gap-3">
-                        <button type="button" id="closeModal" class="flex-1 px-4 py-3 border border-gray-custom text-text-gray rounded-lg hover:border-primary hover:text-primary transition-colors">
-                            Cancel
-                        </button>
-                        <button type="submit" class="flex-1 px-4 py-3 bg-primary text-dark font-semibold rounded-lg hover:bg-primary/90 transition-colors">
-                            Subscribe
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div id="projects-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
+        <!-- Project cards injected by JS -->
         </div>
+    </div>
     </section>
 
     <!-- Contact Section -->
@@ -327,9 +236,9 @@
     </footer>
 
     <script src="js/skill.js"></script>
-    <script src="blog/blogdata.js"></script>
     <script src="js/layout.js"></script>
-    <script src="blog/blog.js"></script>
     <script src="js/cardstack.js"></script>
+    <script src="js/project.js"></script>
+    <script src="js/typing.js"></script>
 </body>
 </html>
