@@ -1,19 +1,25 @@
 const projects = [
   {
-    img: 'https://via.placeholder.com/400x250', // contoh gambar
-    github: 'https://github.com/',
-    extern: 'https://example.com',
-    tools: 'Node.js',
-    title: 'E-commerce',
-    desc: 'An advanced e-commerce platform built with Node.js.'
+    icon: '<img src="img/3998732.jpg" alt="Node.js" class="object-contain rounded-xl">',
+    title: "Portfolio Website",
+    desc: "A responsive portfolio website showcasing my projects and skills with modern design principles.",
+    extern: "#",
+    github: "#",
+    tools: [
+      { name: "HTML", color: "primary" },
+      { name: "CSS", color: "secondary" },
+      { name: "JavaScript", color: "accent-coral" }
+    ]
   },
   {
-    img: 'https://via.placeholder.com/400x250',
-    github: 'https://github.com/',
-    extern: 'https://example.com',
-    tools: 'React',
-    title: 'Portfolio Website',
-    desc: 'A modern responsive portfolio website with animations.'
+    icon: '<img src="img/3998732.jpg" alt="Node.js" class="object-contain rounded-xl">',
+    title: "E-commerce",
+    desc: "An advanced e-commerce platform built with Node.js.",
+    extern: "https://example.com",
+    github: "https://github.com/",
+    tools: [
+      { name: "Node.js", color: "primary" }
+    ]
   }
 ];
 
@@ -21,35 +27,30 @@ const projectsContainer = document.getElementById('projects-container');
 
 projects.forEach(project => {
   const el = document.createElement('div');
-  el.className = "glass-effect rounded-2xl overflow-hidden card-hover group";
+  el.className = "card p-6 rounded-2xl glow-effect";
 
   el.innerHTML = `
-    <div class="relative overflow-hidden">
-      <img src="${project.img}" alt="${project.title}" 
-           class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-      
-      <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent 
-                  opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-        <div class="flex gap-3">
-          <a href="${project.extern}" target="_blank" 
-             class="w-10 h-10 bg-primary rounded-full flex items-center justify-center text-dark hover:scale-110 transition-transform">
-            <i class="fas fa-external-link-alt"></i>
-          </a>
-          <a href="${project.github}" target="_blank" 
-             class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-dark hover:scale-110 transition-transform">
-            <i class="fab fa-github"></i>
-          </a>
-        </div>
-      </div>
+    <div class="w-full h-48 rounded-xl mb-4 flex items-center justify-center">
+      ${project.icon}
     </div>
-    
-    <div class="p-6">
-      <div class="flex items-center gap-2 mb-3">
-        <span class="px-3 py-1 bg-primary/20 text-primary text-xs rounded-full">${project.tools}</span>
-      </div>
-      <h3 class="text-xl font-bold text-white mb-2">${project.title}</h3>
-      <p class="text-text-gray text-sm">${project.desc}</p>
+
+    <h3 class="text-text-dark font-bold text-xl mb-2">${project.title}</h3>
+    <p class="text-text-gray mb-4">${project.desc}</p>
+
+    <div class="flex flex-wrap gap-2 mb-4">
+      ${project.tools.map(tool => `
+        <span class="px-3 py-1 bg-${tool.color}/20 text-${tool.color} text-xs rounded-full">${tool.name}</span>
+      `).join("")}
     </div>
+
+                    <div class="flex gap-4">
+                        <a href="${project.github}" class="flex-1 text-center py-2 border border-primary text-primary rounded-lg hover:bg-primary/70 hover:text-white transition-colors">
+                            <i class="fa-brands fa-github"></i> Code
+                        </a>
+                        <a href="${project.demo}" class="flex-1 text-center py-2 bg-primary text-white border border-primary/70 rounded-lg hover:bg-white hover:text-primary transition-colors">
+                            <i class="fa-solid fa-external-link-alt"></i> Demo
+                        </a>
+                    </div>
   `;
 
   projectsContainer.appendChild(el);
